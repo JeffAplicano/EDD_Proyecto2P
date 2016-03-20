@@ -1,0 +1,159 @@
+
+public class Monticulo {
+	
+	public Monticulo(int Tamaño)
+	{
+		Array = new int [Tamaño];
+		m_nCount = 0;
+	}
+	
+	//Constructor
+	public Monticulo()
+	{
+		m_nCount = 0;
+		m_nSize = 100;
+		Array = new int[m_nSize];
+	}
+	
+	// (Flotar)
+	public void Push(int Dato)
+	{
+		if(m_nCount == 0)
+		{
+			Array[m_nCount++] = Dato;
+		}
+		else
+		{
+			Array[m_nCount++] = Dato;
+			
+			if(Array[m_nCount - 1] < Array[getPadre(m_nCount - 1)])
+			{
+				Flotar(m_nCount - 1);
+			}
+			
+			if(m_nCount == m_nSize)
+			{
+				this.Crecer();
+			}
+		}
+	}
+	
+	// Remover (Hundir)
+	public int Pop()
+	{
+		int RetVal = Peek();
+		Array[0] = Array[--m_nCount];
+		
+		Hundir(0);
+		
+		return RetVal;
+	}
+	
+	//Metodo Ver
+	public int Peek()
+	{
+		if(m_nCount > 0)
+		{
+			return Array[0];
+		}
+		throw new IndexOutOfBoundsException("¡El Montículo está vacío!");
+	}
+	
+	//MÉTODOS PRIVADOS
+	
+	//Miembros de la Clase
+	private int m_nCount;
+	private int m_nSize;
+	private int[] Array;	
+	
+	//Método Crecer
+	private void Crecer() 
+	{
+		int[] Temp;
+		Temp = new int [m_nCount * 2];
+				
+		//Copiar elemento por elemento
+		for(int i = 0; i < m_nCount; i++)
+		{
+			Temp[i] = Array[i];
+		}
+		Array = Temp;
+	}	
+	
+	//Padre
+	private int getPadre(int i)
+	{
+		if(i == 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return (i - 1)/2;
+		}
+	}
+	
+	//Hijo Izquierdo
+	private int getHijoIzquierdo(int i)
+	{
+		return 2 * i + 1 < m_nCount - 1 ? 2 * i + 1 : -1;
+	}
+	
+	//Hijo Derecho
+	private int getHijoDerecho(int i)
+	{
+		return 2 * i + 2 < m_nCount - 1 ? 2 * i + 2 : -1;
+	}
+	
+	//Método Intercambio
+	private void Swap(int i, int Hijo)
+	{
+		int Temp = Array[i];
+		Array[i] = Array[Hijo];
+		Array[Hijo] = Temp;
+	}
+	
+	//Método Hundir
+	private void Hundir(int i)
+	{
+		boolean HI = getHijoIzquierdo(i) > -1;
+		boolean HD = getHijoDerecho(i) > -1;
+		
+		if(HI || HD)
+		{
+			if(Array[i] > Array[getHijoIzquierdo(i)])
+			{
+				Swap(getHijoIzquierdo(i), i);
+				Hundir(getHijoIzquierdo(i));
+			}
+			else
+			{
+				if(Array[i] > Array[getHijoDerecho(i)])
+				{
+					Swap(getHijoDerecho(i), i);
+					Hundir(getHijoDerecho(i));
+				}
+			}
+		}
+	}
+	
+	//Método Flotar
+	private void Flotar(int i)
+	{
+		if (i == 0)
+		{
+			return;
+		}
+		
+		else
+		{
+			if(Array[i] < Array[getPadre(i)])
+			{
+				Swap(i, getPadre(i));
+				Flotar(getPadre(i));
+			}
+		}
+	}
+	
+
+}
