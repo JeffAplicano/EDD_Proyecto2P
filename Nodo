@@ -1,0 +1,14 @@
+
+public class Nodo {
+	int info;
+	public Nodo siguiente;
+	
+	public  Nodo(int dato){
+		info=dato;
+	}
+	public void verNodo(){
+		System.out.println("{"+info+"}");
+	}
+	
+
+}
