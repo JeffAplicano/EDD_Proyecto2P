@@ -1,0 +1,196 @@
+import org.junit.Test;
+import junit.framework.TestCase;
+
+
+public class ListTest extends TestCase {
+	
+@Test
+	public void testisEmpty() {
+ListaEnlazada miArray = new ListaEnlazada();
+		
+miArray.addFirst(4);
+miArray.addFirst(5);
+miArray.addFirst(6);
+		
+		assertFalse(miArray.isEmpty());
+	}
+	
+	
+	
+	@Test
+	public void testaddFirst() {
+ListaEnlazada miArray = new ListaEnlazada();
+		
+		miArray.addFirst(4);
+		miArray.addFirst(5);
+		miArray.addFirst(6);
+		
+		assertEquals(3, miArray.size());
+	}
+	
+	
+	@Test
+	public void testaddLast(){
+ListaEnlazada miArray = new ListaEnlazada();
+		
+miArray.addFirst(4);
+miArray.addFirst(5);
+miArray.addFirst(6);
+miArray.addLast(9);
+
+assertEquals(4, miArray.size());
+		
+		
+	}
+	
+	
+	@Test
+	public void testAdd(){
+ListaEnlazada miArray = new ListaEnlazada();
+		
+miArray.addFirst(4);
+miArray.addFirst(5);
+miArray.addFirst(6);
+miArray.addLast(9);
+miArray.add(2, 33);
+
+assertEquals(5, miArray.size());
+		
+		
+	}
+	
+	@Test
+	public void testRemoveFirst() {
+		ListaEnlazada miArray = new ListaEnlazada();
+		
+		
+		miArray.addFirst(4);
+		miArray.addFirst(5);
+		miArray.addFirst(6);
+		miArray.addFirst(8);
+		miArray.addFirst(3);
+		miArray.addFirst(11);
+		miArray.removeFirst();
+	assertEquals(5, miArray.size());
+		
+	}
+	
+	
+	@Test
+	public void testRemove() {
+		ListaEnlazada miArray = new ListaEnlazada();
+		
+		
+		miArray.addFirst(4);
+		miArray.addFirst(5);
+		miArray.addFirst(6);
+		
+	assertEquals(2, miArray.search(4));
+		
+	}
+	
+	
+	@Test
+	public void testRemoveLast() {
+		ListaEnlazada miArray = new ListaEnlazada();
+		miArray.addFirst(4);
+		miArray.addFirst(5);
+		miArray.addFirst(6);
+		miArray.addFirst(9);
+		miArray.removeLast();
+	assertEquals(3, miArray.size());
+		
+	}
+	
+	
+	@Test
+	public void testGet() {
+		ListaEnlazada miArray = new ListaEnlazada();
+		miArray.addFirst(4);
+		miArray.addFirst(1);
+		miArray.addFirst(6);
+		miArray.addFirst(9);
+		miArray.get(2);
+	assertEquals(1, miArray.get(2));
+		
+	}
+	@Test
+	public void testSize() {
+		ListaEnlazada miArray = new ListaEnlazada();
+		miArray.addFirst(4);
+		miArray.addFirst(1);
+		miArray.addFirst(6);
+		
+	assertEquals(0, miArray.search(6));
+		
+	}
+	
+	@Test
+	public void testPrimero() { 
+		 Arreglo_Dinamico f = new Arreglo_Dinamico();
+		  f.add(6);
+		  f.add(2);
+		assertEquals(f.Remove(0),true); 
+		
+		
+	}	 
+	 @Test
+	 	 
+	     public void testSegundo() { 
+		 Arreglo_Dinamico f = new Arreglo_Dinamico(); 
+	 		
+	 		 
+	 		f.addFirst(4); 
+	 		f.addFirst(5); 
+	 		f.addFirst(6); 
+	 		assertEquals(2,f.search(6));
+	 	}
+	 
+	 @Test
+	 public void testTercero() { 
+	 	 Arreglo_Dinamico f = new Arreglo_Dinamico();
+	 	  f.add(6);
+	 	  f.add(2);
+	 	assertEquals(1,f.search(2)); 
+	 	
+	 	
+	 }	
+	 @Test
+	 public void testCuarto() { 
+	 	 Arreglo_Dinamico f = new Arreglo_Dinamico();
+	 	  f.add(8);
+	 	  f.add(3);
+	 	  f.add(8);
+		  f.add(3);
+		  f.add(8);
+	 	  f.add(3);
+	 	assertEquals(6,f.size()); 
+	 	
+	 	
+	 }
+	 @Test
+	 public void testQuinto() { 
+	 	 Monticulo f = new Monticulo();
+	 	  f.Push(6);
+	 	  f.Push(8);
+	 	  f.Push(9);
+	 	  f.Push(10);
+	 	  
+	 	assertEquals(6,f.Pop()); 
+	 	
+	 	
+	 }
+	 @Test
+	 public void testSexto() { 
+	 	 Monticulo f = new Monticulo();
+	 	  f.Push(6);
+	 	  f.Push(8);
+	 	  f.Push(9);
+	 	  f.Push(10);
+	 	  
+	 	assertEquals(6,f.Peek()); 
+	 	
+	 	
+	 }
+	
+	}
