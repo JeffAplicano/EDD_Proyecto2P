@@ -1,0 +1,204 @@
+import java.util.ArrayList;
+
+
+
+public class ListaEnlazada implements List {
+	private ArrayList<Integer> mArr;
+	Nodo primero;
+	int size;
+	
+	public ListaEnlazada(){
+		mArr = new ArrayList<Integer>();
+		primero=null;
+		size=0;
+	}
+	
+	public boolean isEmpty() {
+		if (primero== null){
+			return true;
+		}else return false;
+		// TODO Auto-generated method stub
+	
+	}
+	
+
+
+	public void addFirst(int value) {
+		if (primero==null){
+			primero=new Nodo(value);
+		}else {
+			Nodo Temporal= new Nodo (value);
+			Temporal.siguiente= primero;
+			primero= Temporal;
+		}
+		
+		size++;
+		// TODO Auto-generated method stub
+		
+		mArr.add(0,new Integer(value));
+	
+	}
+	
+	public void addLast(int value) {
+		Nodo auxiliar= new Nodo(value);
+		Nodo auxiliar2;
+		if(isEmpty()){
+			addFirst(value);
+		}else{
+			
+			auxiliar2=primero;
+			while (auxiliar2.siguiente !=null){
+				auxiliar2=auxiliar2.siguiente;
+			}
+			auxiliar2.siguiente= auxiliar;
+		}
+		
+		size++;
+		
+		mArr.add(0,new Integer(value));
+	 // TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void add(int posicion, int dato) {
+		// TODO Auto-generated method stub
+		Nodo auxiliar= primero;
+		Nodo auxiDato=null;
+		Nodo anterior =primero;
+		int contador=0;
+		if(posicion <0|| posicion>size()){
+			System.out.println("la posicion insertada no es correcta porque se salio fuera del primero y el ultimo");
+			
+		}else{
+			 if(posicion==0){
+	                addFirst(dato);
+	            }else if(posicion==size()){
+	            	
+	            	addLast(dato);
+	            	
+	            }else {
+	            	  while(auxiliar!=null){
+	            		  if (posicion == contador){
+		                        //Creo el nodo
+		                        auxiDato=new Nodo(dato);
+		                        //El siguiente del anterior a aux es auxDato
+		                       
+		                        anterior.siguiente=auxiDato;
+		                        auxiDato.siguiente=auxiliar;
+		                    }
+		                     
+		                    //Actualizo anterior
+		                    anterior=auxiliar;
+		                     
+		                    contador++;
+		                    auxiliar=auxiliar.siguiente; //Actualizo siguiente
+	            		  
+	            		  
+		                }
+	            	  }
+	           }
+		size++;
+		}
+	
+		
+	
+
+
+	
+	public void remove(int posicion) {
+		Nodo anterior= primero;
+		Nodo actual=primero;
+			int k=0;
+			if (posicion >0){
+				
+				
+				while(k!=posicion && actual.siguiente!=null){
+					anterior=actual;
+					actual=actual.siguiente;
+					k++;
+					
+				}
+				anterior.siguiente=actual.siguiente;
+			}
+
+			size--;
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+	public void removeFirst() {
+		primero= primero.siguiente;
+		size --;
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void removeLast() {
+		Nodo anterior= primero;
+		Nodo actual=primero;
+		
+		while(actual.siguiente !=null){
+			anterior =actual;
+			actual=actual.siguiente;
+		}
+		anterior.siguiente=null;
+
+		// TODO Auto-generated method stub
+		size --;
+	}
+
+
+	
+
+
+	
+	public int size() {
+		
+		// TODO Auto-generated method stub
+		return size;
+	}
+
+
+	
+	public int get(int index) {
+		int contador=0;
+		Nodo temporal=primero;
+		while (contador<index){
+			temporal=temporal.siguiente;
+			contador++;
+		}
+		
+		// TODO Auto-generated method stub
+		return temporal.info;
+	}
+	public int  search(int elemento) {
+	
+		for(int i = 0; i<this.size(); i++){
+			 if(get(i) == elemento){
+				 return i;
+			 }
+		 }
+		 return -1;
+		
+	}
+	
+	public String ImprimirLista(){
+		String Dato="";
+		Nodo auxiliar=primero;
+		while(auxiliar!=null){
+			Dato+="{"+auxiliar.info+"}";
+			auxiliar=auxiliar.siguiente;
+		}
+		return (Dato);
+	}
+
+	
+	
+	
+}
