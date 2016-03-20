@@ -1,0 +1,35 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+
+public class Listtes2 {
+
+
+		 @Test
+		 public void testCuarto()
+		 {
+			 ListaEnlazada miArray = new ListaEnlazada();
+			 miArray.add(8, 3);
+			 miArray.add(3, 2);
+			 miArray.add(8, 5);
+			 miArray.add(3, 6);
+			 
+			 Monticulo heap = new Monticulo();
+			 int size = miArray.size();
+			 for(int i = 0; i< size; i++);
+			 {
+				 heap.Push(miArray.get(0));
+				 miArray.removeFirst();
+			 }
+			 Arreglo_Dinamico ad = new Arreglo_Dinamico();
+			 for(int i= 0; i<size; i++);
+			 {
+				ad.add(heap.Pop()); 
+		 }
+			 int x =0;
+			 x++;
+	}
+
+}
+
